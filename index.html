@@ -3,22 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Video Gallery Grid</title>
-    <!-- ADDED: In-browser transpiler to read TSX/JSX code -->
+    <title>Veo Gallery</title>
+    <!-- 1. More standard Tailwind CSS CDN for stability -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 2. Babel for compiling TSX/JSX in the browser -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- MOVED: Tailwind CSS is now loaded directly for stability -->
-    <script src="https://esm.sh/@tailwindcss/browser@4/dist/tailwindcss-with-browser.js"></script>
+    <!-- 3. Import Map for React & GenAI. Simplified for robustness. -->
     <script type="importmap">
 {
   "imports": {
-    "react/": "https://esm.sh/react@^19.1.0/",
     "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/client": "https://esm.sh/react-dom@^19.1.0/client",
+    "@google/genai": "https://esm.sh/@google/genai@^1.9.0",
     "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.9.0"
+    "react/": "https://esm.sh/react@^19.1.0/"
   }
 }
 </script>
     <style>
+      /* A simple fade-in animation for modals and pages */
       @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
@@ -26,18 +29,11 @@
       .animate-fade-in {
         animation: fadeIn 0.3s ease-out;
       }
-      /* For aspect ratio plugin functionality */
-      .aspect-w-16 { --tw-aspect-w: 16; }
-      .aspect-h-9 { --tw-aspect-h: 9; }
-      .aspect-h-9 { position: relative; padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%); }
-      .aspect-w-16 > *,
-      .aspect-h-9 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
     </style>
-  <link rel="stylesheet" href="./index.css">
-</head>
+  </head>
   <body class="bg-gray-900">
     <div id="root"></div>
-    <!-- UPDATED: Changed script type to "text/babel" to be processed by the transpiler -->
+    <!-- 4. Main application script, processed by Babel -->
     <script type="text/babel" data-type="module" src="./index.tsx"></script>
   </body>
 </html>
